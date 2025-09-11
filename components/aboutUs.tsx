@@ -17,7 +17,7 @@ export function AboutUs() {
           <h2 className="text-3xl sm:text-4xl font-bold text-balance">
             About <span className="text-primary">Our Company</span>
           </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
+          <p className="text-lg text-justify  md:text-start text-muted-foreground leading-relaxed text-pretty">
             We are a dedicated IT solutions company specializing in comprehensive technology services that drive
             business growth. Our expert team delivers cutting-edge web development, streamlined business automation
             through management systems and Odoo ERP, professional network installations, and reliable Starlink satellite
