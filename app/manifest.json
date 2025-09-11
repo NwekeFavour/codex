@@ -1,0 +1,21 @@
+{
+  "name": "Codex Technologies | IT Solutions & Consulting",
+  "short_name": "Codex NG",
+  "description": "Codex Technologies helps businesses scale with IT consulting, cloud services, web development, ERP systems, Starlink installations, and enterprise networking.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F7FA",
+  "theme_color": "#0A2540",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/ico"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/ico"
+    }
+  ]
+}

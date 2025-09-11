@@ -1,0 +1,193 @@
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowRight } from "lucide-react"
+import Image from "next/image"
+import Codex from "../assets/images/codex.webp"
+import XIcon from '@mui/icons-material/X';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
+
+const services = [
+  { name: "Web Development", href: "/services/web-development" },
+  { name: "Business Automation", href: "/services/business-automation" },
+  { name: "Network Installation", href: "/services/network-installation" },
+  { name: "Starlink Installation", href: "/services/starlink-installation" },
+]
+
+const company = [
+  { name: "About Us", href: "/about" },
+  { name: "Our Team", href: "/team" },
+  { name: "Blog", href: "/blog" },
+]
+
+const support = [
+  { name: "Contact Us", href: "/contact" },
+  { name: "Support Center", href: "/support" },
+  { name: "Privacy Policy", href: "/privacy" },
+  { name: "Terms of Service", href: "/terms" },
+]
+
+export default function Footer() {
+  return (
+    <footer className="bg-primary text-primary-foreground">
+      {/* Main Footer Content */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center space-x-2 mb-6">
+              <div className="rounded-lg flex items-center justify-center">
+                <Image  src={Codex.src} className="w-[50px] h-[60px]" width={50} height={70} alt="codex-technologies-logo"/>
+              </div>
+              <span className="font-bold text-xl">Codex Technology Solutions</span>
+            </div>
+            <p className="text-primary-foreground/80 mb-6 text-pretty leading-relaxed">
+              Professional IT services company providing web development, business automation, network installation, and
+              Starlink services to help businesses thrive in the digital age.
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3">
+                <Phone className="w-4 h-4 text-accent" />
+                <Link
+                  href="tel:+15551234567"
+                  className="text-primary-foreground/80 hover:text-accent transition-colors"
+                >
+                  +234 811 102 2909
+                </Link>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail className="w-4 h-4 text-accent" />
+                <Link
+                  href="mailto:info@codex.ng"
+                  className="text-primary-foreground/80 hover:text-accent transition-colors"
+                >
+                  info@codex.ng
+                </Link>
+              </div>
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-4 h-4 text-accent mt-1 flex-shrink-0" />
+                <span className="text-primary-foreground/80 text-pretty">
+                  123 Tech Street, Innovation District, City, State 12345
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="font-semibold text-lg mb-6">Services</h3>
+            <ul className="space-y-3">
+              {services.map((service) => (
+                <li key={service.name}>
+                  <Link
+                    href={service.href}
+                    className="text-primary-foreground/80 hover:text-accent transition-colors text-pretty"
+                  >
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="font-semibold text-lg mb-6">Company</h3>
+            <ul className="space-y-3">
+              {company.map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-primary-foreground/80 hover:text-accent transition-colors">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Support & Newsletter */}
+          <div>
+            <h3 className="font-semibold text-lg mb-6">Support</h3>
+            <ul className="space-y-3 mb-6">
+              {support.map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-primary-foreground/80 hover:text-accent transition-colors">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* Newsletter Signup */}
+            <div className="bg-primary-foreground/10 rounded-lg p-4">
+              <h4 className="font-semibold mb-2">Stay Updated</h4>
+              <p className="text-sm text-primary-foreground/80 mb-4 text-pretty">
+                Get the latest IT insights and updates delivered to your inbox.
+              </p>
+              <Button asChild size="sm" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                <Link href="/contact">
+                  Subscribe
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-primary-foreground/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            {/* Copyright */}
+            <div className="text-primary-foreground/80 text-sm">© 2024 Codex Technology Solutions. All rights reserved.</div>
+
+            {/* Social Links */}
+            <div className="flex items-center space-x-4">
+              <span className="text-primary-foreground/80 text-sm">Follow us:</span>
+              <div className="flex space-x-3">
+                <Link
+                  href="https://facebook.com"
+                  className="text-primary-foreground/60 hover:text-accent transition-colors"
+                  aria-label="Facebook"
+                >
+                  <FacebookIcon className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="https://twitter.com"
+                  className="text-primary-foreground/60 hover:text-accent transition-colors"
+                  aria-label="Twitter"
+                >
+                  <XIcon className="w-5 h-5"  />
+                </Link>
+                <Link
+                  href="https://linkedin.com"
+                  className="text-primary-foreground/60 hover:text-accent transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <LinkedInIcon className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="https://linkedin.com"
+                  className="text-primary-foreground/60 hover:text-accent transition-colors flex justify-center"
+                  aria-label="LinkedIn"
+                >
+                  {/* <Linkedin className="w-5 h-5" /> */}
+                  <WhatsAppIcon className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="https://instagram.com"
+                  className="text-primary-foreground/60 hover:text-accent transition-colors"
+                  aria-label="Instagram"
+                >
+                  <InstagramIcon className="w-5 h-5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
