@@ -23,7 +23,7 @@ export function AboutUs() {
             through management systems and Odoo ERP, professional network installations, and reliable Starlink satellite
             internet setup.
           </p>
-          <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
+          <p className="text-lg text-justify  md:text-start text-muted-foreground leading-relaxed text-pretty">
             With years of experience and a commitment to excellence, we transform complex technical challenges into
             simple, effective solutions. Whether you're looking to enhance your digital presence, automate your
             operations, or upgrade your connectivity, we provide the expertise and support you need to succeed in
