@@ -7,6 +7,7 @@ import { Suspense } from "react"
 import "./globals.css"
 import Codex from "./codex.ico"
 import SocialMediaToggle from "@/components/socialsToggle"
+import { Preloader } from "@/components/preloader"
 
 export const metadata: Metadata = {
   title: "CODEX TECHNOLOGY SOLUTIONS | IT Solutions & Consulting",
@@ -119,6 +120,7 @@ export default function RootLayout({
       </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
+        <Preloader/>
         <SocialMediaToggle  />
         <Analytics />
       </body>

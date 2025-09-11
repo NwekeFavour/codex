@@ -202,7 +202,7 @@ export default function ContactForm() {
             type="submit"
             size="lg"
             disabled={isLoading}
-            className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+            className="w-full bg-accent sm:flex hidden hover:bg-accent/90 text-accent-foreground"
           >
             {isLoading ? (
               <>
@@ -217,6 +217,24 @@ export default function ContactForm() {
             )}
           </Button>
 
+          <Button
+            type="submit"
+            size="lg"
+            disabled={isLoading}
+            className="w-full bg-accent sm:hidden flex hover:bg-accent/90 text-accent-foreground"
+          >
+            {isLoading ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-accent-foreground mr-2"></div>
+                Sending Message...
+              </>
+            ) : (
+              <>
+                <Send className="mr-2 h-4 w-4" />
+                Get Free Consultation
+              </>
+            )}
+          </Button>
           <p className="text-xs text-muted-foreground text-center text-pretty">
             By submitting this form, you agree to our privacy policy. We'll never share your information with third
             parties.
