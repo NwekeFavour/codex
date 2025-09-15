@@ -30,7 +30,7 @@ export default function QuickContactSection() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/trigger-zap-two`,
+        `${process.env.NEXT_PUBLIC_API_URL || "https://codex2-rttd.onrender.com"}/trigger-zap-two`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
