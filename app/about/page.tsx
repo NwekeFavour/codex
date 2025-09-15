@@ -19,7 +19,7 @@ export default function AboutPage() {
           </div>
 
           <div className="flex-1 space-y-6">
-            <h2 className="text-4xl sm:text-5xl font-bold text-balance text-black">
+            <h2 className="text-4xl sm:text-[40px] font-bold text-balance text-black">
               About <span className="text-black">Our Company</span>
             </h2>
             <p className="text-lg text-black/80 leading-relaxed md:text-start text-justify text-pretty">

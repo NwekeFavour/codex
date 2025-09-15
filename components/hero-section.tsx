@@ -55,7 +55,7 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen lg:py-14 md:py-12 py-10">
           {/* Content Side */}
           <div className="space-y-8 order-2 lg:order-1">
             {/* Icon */}

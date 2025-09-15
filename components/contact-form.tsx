@@ -10,21 +10,63 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Send, CheckCircle } from "lucide-react"
+import { Send, CheckCircle, XCircle } from "lucide-react"
 
 export default function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
+  const [formData, setFormData] = useState({
+    fname: "",
+    lname: "",    
+    email: "",
+    phone: "",
+    company: "",
+    service: "",
+    timeline: "",
+    message: "",
+    consent: false,
+    newsletter: false,
+  })  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
+    setErrorMessage("")
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    const target = e.target as HTMLFormElement;
+    const formData = {
+      fname: target.fname.value,
+      lname: target.lname.value,
+      email: target.email.value,
+      phone: target.phone.value,  
+      company: target.company.value,
+      service: target.service.value,
+      timeline: target.timeline.value,
+      message: target.message.value,
+      consent: target.consent.checked,
+      newsletter: target.newsletter.checked,
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/trigger-zap", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok")
+      }
+
+      setIsSubmitted(true)
+    } catch (error) {
+      setErrorMessage("There was a problem submitting your message. Please try again later.")
+    }
 
     setIsLoading(false)
-    setIsSubmitted(true)
   }
 
   if (isSubmitted) {
@@ -40,7 +82,7 @@ export default function ContactForm() {
             response.
           </p>
           <Button
-            onClick={() => setIsSubmitted(false)}
+            onClick={() => { setIsSubmitted(false); setErrorMessage(""); }}
             variant="outline"
             className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
           >
@@ -60,28 +102,34 @@ export default function ContactForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
+        {errorMessage && (
+          <div className="mb-4 flex items-center justify-center text-red-600 font-semibold">
+            <XCircle className="w-5 h-5 mr-2" />
+            {errorMessage}
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Personal Information */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="firstName" className="text-foreground">
+              <Label htmlFor="fname" className="text-foreground">
                 First Name *
               </Label>
               <Input
-                id="firstName"
-                name="firstName"
+                id="fname"
+                name="fname"
                 required
                 placeholder="John"
                 className="bg-input border-border text-foreground"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="lastName" className="text-foreground">
+              <Label htmlFor="lname" className="text-foreground">
                 Last Name *
               </Label>
               <Input
-                id="lastName"
-                name="lastName"
+                id="lname"
+                name="lname"
                 required
                 placeholder="Doe"
                 className="bg-input border-border text-foreground"

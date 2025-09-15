@@ -32,14 +32,14 @@ const contactInfo = [
   },
   {
     title: "Email",
-    value: "info@codex.ng",
+    value: "Info@codex.ng",
     description: "Send us your questions anytime",
     icon: Mail,
-    href: "mailto:info@codex.ng",
+    href: "mailto:Info@codex.ng",
   },
   {
     title: "Address",
-    value: "123 Tech Street, Innovation District, City, State 12345",
+    value: "A05 Tsukunda House, CBD, Abuja",
     description: "Visit our office for in-person consultations",
     icon: MapPin,
     href: "https://maps.google.com",

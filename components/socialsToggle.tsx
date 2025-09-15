@@ -30,7 +30,7 @@ export default function SocialMediaToggle() {
           <FacebookIcon className="w-7 h-7"/> Facebook
         </a>
         <a
-          href="https://facebook.com"
+          href="https://wa.me/+2348111022909"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 hover:text-blue-600 transition"
@@ -54,7 +54,7 @@ export default function SocialMediaToggle() {
           <LinkedInIcon className="w-7 h-7" /> LinkedIn
         </a>
         <a
-          href="mailto:business@codextechnologies.com"
+          href="mailto:Info@codex.ng"
           className="flex items-center gap-2 hover:text-red-500 transition"
         >
           <EmailIcon className="w-7 h-7" /> Email

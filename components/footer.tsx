@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowRight } from "lucide-react"
+import { Phone, Mail, MapPin, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Codex from "../assets/images/codex.webp"
 import XIcon from '@mui/icons-material/X';
@@ -60,16 +60,16 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-accent" />
                 <Link
-                  href="mailto:info@codex.ng"
+                  href="mailto:Info@codex.ng"
                   className="text-primary-foreground/80 hover:text-accent transition-colors"
                 >
-                  info@codex.ng
+                  Info@codex.ng
                 </Link>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-accent mt-1 flex-shrink-0" />
                 <span className="text-primary-foreground/80 text-pretty">
-                  123 Tech Street, Innovation District, City, State 12345
+                  A05 Tsukunda House CBD, Abuja
                 </span>
               </div>
             </div>

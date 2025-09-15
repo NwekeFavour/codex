@@ -1,45 +1,51 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Phone, Mail, MapPin } from "lucide-react"
+import { Phone, Mail, MapPin, XCircle } from "lucide-react"
 
 export default function QuickContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
+  const [service, setService] = useState("")
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setErrorMessage("")
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    const target = e.target as HTMLFormElement
+    const formData = {
+      Yname: target.Yname.value,
+      email: target.email.value,
+      phone: target.phone.value,
+      service,
+      message: target.message.value,
+    }
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/trigger-zap-two`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      )
 
-    // Reset form after 3 seconds
-    setTimeout(() => setIsSubmitted(false), 3000)
-  }
+      if (!response.ok) throw new Error("Network response was not ok")
 
-  if (isSubmitted) {
-    return (
-      <section className="py-20 bg-gradient-to-br from-indigo-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-green-100 border border-green-300 rounded-lg p-8">
-              <h3 className="text-2xl font-bold text-green-800 mb-2">Thank You!</h3>
-              <p className="text-green-700">We've received your message and will get back to you within 24 hours.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    )
+      setIsSubmitted(true)
+    } catch (error) {
+      setErrorMessage("There was a problem submitting your message. Please try again later.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -58,37 +64,85 @@ export default function QuickContactSection() {
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h3 className="text-2xl font-semibold text-slate-900 mb-6">Quick Contact</h3>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <Input placeholder="Your Name" required className="border-slate-300" />
-                  <Input type="email" placeholder="Email Address" required className="border-slate-300" />
+              {errorMessage && (
+                <div className="mb-4 flex items-center justify-center text-red-600 font-semibold">
+                  <XCircle className="w-5 h-5 mr-2" />
+                  {errorMessage}
                 </div>
+              )}
 
-                <Input placeholder="Phone Number" className="border-slate-300" />
+              {
+                isSubmitted ? 
+                <section className="">
+                  <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto text-center">
+                      <div className="bg-green-100 border border-green-300 rounded-lg p-8">
+                        <h3 className="text-2xl font-bold text-green-800 mb-2">Thank You!</h3>
+                        <p className="text-green-700">
+                          We've received your message and will get back to you within 24 hours.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                :
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <Input
+                      placeholder="Your Name"
+                      name="Yname"
+                      required
+                      disabled={isSubmitting}
+                      className="border-slate-300"
+                    />
+                    <Input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      required
+                      disabled={isSubmitting}
+                      className="border-slate-300"
+                    />
+                  </div>
 
-                <Select required>
-                  <SelectTrigger className="border-slate-300">
-                    <SelectValue placeholder="Service Needed" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="web-development">Web Development</SelectItem>
-                    <SelectItem value="business-automation">Business Automation</SelectItem>
-                    <SelectItem value="network-installation">Network Installation</SelectItem>
-                    <SelectItem value="starlink-installation">Starlink Installation</SelectItem>
-                    <SelectItem value="consultation">Free Consultation</SelectItem>
-                  </SelectContent>
-                </Select>
+                  <Input
+                    name="phone"
+                    placeholder="Phone Number"
+                    disabled={isSubmitting}
+                    className="border-slate-300"
+                  />
 
-                <Textarea placeholder="Brief project description (optional)" rows={3} className="border-slate-300" />
+                  <Select value={service} onValueChange={setService}>
+                    <SelectTrigger className="border-slate-300">
+                      <SelectValue placeholder="Service Needed" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="web-development">Web Development</SelectItem>
+                      <SelectItem value="business-automation">Business Automation</SelectItem>
+                      <SelectItem value="network-installation">Network Installation</SelectItem>
+                      <SelectItem value="starlink-installation">Starlink Installation</SelectItem>
+                      <SelectItem value="consultation">Free Consultation</SelectItem>
+                    </SelectContent>
+                  </Select>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-accent hover:bg-accent/80 text-white py-3"
-                >
-                  {isSubmitting ? "Sending..." : "Get Free Quote"}
-                </Button>
-              </form>
+                  <Textarea
+                    name="message"
+                    placeholder="Brief project description (optional)"
+                    rows={3}
+                    disabled={isSubmitting}
+                    className="border-slate-300"
+                  />
+
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-accent hover:bg-accent/80 text-white py-3"
+                  >
+                    {isSubmitting ? "Sending..." : "Get Free Quote"}
+                  </Button>
+                </form>
+              }
+
             </div>
 
             {/* Contact Info */}
@@ -117,7 +171,7 @@ export default function QuickContactSection() {
                   </div>
                   <div>
                     <div className="font-semibold text-slate-900">Email Us</div>
-                    <div className="text-slate-600">hello@codextechnologies.com</div>
+                    <div className="text-slate-600">Info@codex.ng</div>
                   </div>
                 </div>
 
@@ -127,7 +181,7 @@ export default function QuickContactSection() {
                   </div>
                   <div>
                     <div className="font-semibold text-slate-900">Visit Us</div>
-                    <div className="text-slate-600">A05 Tsukunda House Central Business District</div>
+                    <div className="text-slate-600">A05 Tsukunda House, CBD, Abuja</div>
                   </div>
                 </div>
               </div>
