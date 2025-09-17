@@ -49,7 +49,7 @@ export default function ContactForm() {
     }
 
     try {
-      const response = await fetch("https://codex2-rttd.onrender.com/trigger-zap", {
+      const response = await fetch("http://localhost:5000/trigger-zap", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

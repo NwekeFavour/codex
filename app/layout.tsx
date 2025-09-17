@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   creator: "Codex Technologies",
   publisher: "Codex Technologies",
   robots: "index, follow",
-  metadataBase: new URL("https://codextech.ng"),
+  metadataBase: new URL("https://www.codex.ng"),
   alternates: {
     canonical: "/",
   },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
       "Codex Technologies helps businesses scale with IT consulting, cloud services, web development, ERP systems, Starlink installations, and enterprise networking.",
     type: "website",
     locale: "en_US",
-    url: "https://codextech.ng",
+    url: "https://codex.ng",
     siteName: "Codex Technologies",
     images: [
       {
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "Codex Technologies | IT Solutions & Consulting",
     description:
       "Codex Technologies helps businesses scale with IT consulting, cloud services, web development, ERP systems, Starlink installations, and enterprise networking.",
-    images: ["/og-image.jpg"],
+    images: [Codex.src],
   },
   verification: {
     google: "your-google-verification-code",
@@ -74,20 +74,20 @@ export default function RootLayout({
               description:
                 "Codex Technologies helps businesses scale with IT consulting, cloud services, web development, ERP systems, Starlink installations, and enterprise networking.",
               url: "https://www.codex.ng",
-              logo: "https://www.codex.ng/logo.png",
+              logo: "https://www.codex.ng/codex.ico",
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+1-555-123-4567",
+                telephone: "+234 811 102 2909",
                 contactType: "customer service",
                 availableLanguage: "English",
               },
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "123 Tech Street",
-                addressLocality: "Innovation District",
+                streetAddress: "A05 Tsukunda House",
+                addressLocality: "CBD, Abuja",
                 addressRegion: "State",
                 postalCode: "12345",
-                addressCountry: "US",
+                addressCountry: "NIG",
               },
               sameAs: [
                 "https://facebook.com/codexNg",

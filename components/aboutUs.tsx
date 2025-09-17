@@ -1,5 +1,5 @@
 import Link from "next/link"
-import Prof from "../assets/images/prof.webp"
+import Prof from "../assets/images/team-engineers-2.jpg"
 
 export function AboutUs() {
   return (

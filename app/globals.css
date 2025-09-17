@@ -125,19 +125,20 @@
 }
 
 
-
+/* Updated preloader styles to use company image instead of spinner */
 .preloader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #5178d0;
+  background: radial-gradient(circle at center, #5178d0 0%, #3a5998 50%, #2a4580 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  transition: opacity 0.3s ease-out;
+  transition: opacity 0.5s ease-out;
+  overflow: hidden;
 }
 
 .preloader.fade-out {
@@ -145,13 +146,85 @@
   pointer-events: none;
 }
 
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid white;
+/* Added floating particles for creative background */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) rotate(180deg);
+  }
+}
+
+/* Made preloader content much smaller and centered */
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 1;
+}
+
+/* Created rotating ring design around small logo */
+.logo-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.rotating-ring {
+  width: 100px;
+  height: 100px;
+  border: 3px solid transparent;
+  border-top: 3px solid rgba(255, 255, 255, 0.8);
+  border-right: 3px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner-ring {
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spin-reverse 3s linear infinite;
+}
+
+.company-logo {
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 @keyframes spin {
@@ -160,5 +233,97 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+/* Added creative loading bar */
+.loading-bar {
+  width: 120px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.8));
+  border-radius: 2px;
+  animation: loading-progress 2s ease-in-out infinite;
+}
+
+@keyframes loading-progress {
+  0% {
+    width: 0%;
+    transform: translateX(-100%);
+  }
+  50% {
+    width: 100%;
+    transform: translateX(0%);
+  }
+  100% {
+    width: 100%;
+    transform: translateX(100%);
+  }
+}
+
+/* Added typewriter effect for company name */
+.company-name {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.typewriter {
+  border-right: 2px solid rgba(255, 255, 255, 0.8);
+  animation: typewriter 2s steps(12) infinite, blink 1s step-end infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 12ch;
+}
+
+@keyframes typewriter {
+  0% {
+    width: 0ch;
+  }
+  50% {
+    width: 12ch;
+  }
+  100% {
+    width: 12ch;
+  }
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+  51%,
+  100% {
+    border-color: transparent;
   }
 }

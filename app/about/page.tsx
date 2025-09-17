@@ -2,7 +2,7 @@ import Footer from "@/components/footer"
 import Header from "@/components/header"
 import { Computer, Globe, SatelliteIcon, Settings } from "lucide-react"
 import Link from "next/link"
-import About from "../../assets/images/about.webp"
+import About from "../../assets/images/team-engineers-2.jpg"
 
 export default function AboutPage() {
   return (

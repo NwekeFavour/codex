@@ -18,18 +18,18 @@ const services = [
 
 const company = [
   { name: "About Us", href: "/about" },
-  { name: "Our Team", href: "/team" },
+  { name: "Services", href: "/services" },
   { name: "Blog", href: "/blog" },
 ]
 
 const support = [
   { name: "Contact Us", href: "/contact" },
-  { name: "Support Center", href: "/support" },
   { name: "Privacy Policy", href: "/privacy" },
   { name: "Terms of Service", href: "/terms" },
 ]
 
 export default function Footer() {
+  const Year = new Date().getFullYear();
   return (
     <footer className="bg-primary text-primary-foreground">
       {/* Main Footer Content */}
@@ -109,7 +109,7 @@ export default function Footer() {
           {/* Support & Newsletter */}
           <div>
             <h3 className="font-semibold text-lg mb-6">Support</h3>
-            <ul className="space-y-3 mb-6">
+            <ul className="space-y-3 mb-4">
               {support.map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="text-primary-foreground/80 hover:text-accent transition-colors">
@@ -141,7 +141,7 @@ export default function Footer() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
-            <div className="text-primary-foreground/80 text-sm">© 2024 Codex Technology Solutions. All rights reserved.</div>
+            <div className="text-primary-foreground/80 text-sm">© {Year} Codex Technology Solutions. All rights reserved.</div>
 
             {/* Social Links */}
             <div className="flex items-center space-x-4">
@@ -169,9 +169,9 @@ export default function Footer() {
                   <LinkedInIcon className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="https://linkedin.com"
+                  href="https://wa.me/+2348111022909"
                   className="text-primary-foreground/60 hover:text-accent transition-colors flex justify-center"
-                  aria-label="LinkedIn"
+                  aria-label="Whatsapp"
                 >
                   {/* <Linkedin className="w-5 h-5" /> */}
                   <WhatsAppIcon className="w-5 h-5" />

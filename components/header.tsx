@@ -31,7 +31,6 @@ export default function Header() {
               <div className="w-8 h-8 flex items-center justify-center">
                 <Image src={Codex.src} alt="Codex Logo" width={50} height={50} /> 
               </div>
-              <span className="font-bold text-xl text-foreground">Codex</span>
             </Link>
           </div>
 

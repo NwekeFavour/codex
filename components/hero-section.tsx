@@ -6,7 +6,7 @@ import { ArrowRight, Code, Settings, Satellite, ChevronLeft, ChevronRight } from
 import Link from "next/link"
 import Infastructure from "../assets/images/network-infrastructure-and-satellite-technology.webp"
 import Business from "../assets/images/business-automation-dashboard.webp"
-import Computers from "../assets/images/modern-office-with-computers-and-technology.webp"
+import Computers from "../assets/images/team-engineers-1.jpg"
 
 
 const slides = [
