@@ -42,7 +42,7 @@ const contactInfo = [
     value: "A05 Tsukunda House, CBD, Abuja",
     description: "Visit our office for in-person consultations",
     icon: MapPin,
-    href: "https://maps.google.com",
+    href: "https://maps.app.goo.gl/t9wkvwo23xueG2W26",
   },
   {
     title: "Business Hours",
@@ -231,7 +231,7 @@ export default function ContactPage() {
                 variant="outline"
                 className="border-accent text-accent hover:bg-accent hover:text-accent-foreground bg-transparent"
               >
-                <Link href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
+                <Link href="https://maps.app.goo.gl/t9wkvwo23xueG2W26" target="_blank" rel="noopener noreferrer">
                   <MapPin className="mr-2 h-4 w-4" />
                   Get Directions
                 </Link>

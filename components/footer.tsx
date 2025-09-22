@@ -19,14 +19,10 @@ const services = [
 const company = [
   { name: "About Us", href: "/about" },
   { name: "Services", href: "/services" },
+  { name: "Contact Us", href: "/contact" },
   { name: "Blog", href: "/blog" },
 ]
 
-const support = [
-  { name: "Contact Us", href: "/contact" },
-  { name: "Privacy Policy", href: "/privacy" },
-  { name: "Terms of Service", href: "/terms" },
-]
 
 export default function Footer() {
   const Year = new Date().getFullYear();
@@ -108,17 +104,6 @@ export default function Footer() {
 
           {/* Support & Newsletter */}
           <div>
-            <h3 className="font-semibold text-lg mb-6">Support</h3>
-            <ul className="space-y-3 mb-4">
-              {support.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-primary-foreground/80 hover:text-accent transition-colors">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
             {/* Newsletter Signup */}
             <div className="bg-primary-foreground/10 rounded-lg p-4">
               <h4 className="font-semibold mb-2">Stay Updated</h4>

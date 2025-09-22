@@ -120,7 +120,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`font-sans dark:bg-[#F5F7FA] ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={`font-sans  ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
         <Preloader/>
         <SocialMediaToggle  />
