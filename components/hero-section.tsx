@@ -53,7 +53,7 @@ export default function HeroSection() {
   const Icon = currentSlideData.icon
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen lg:py-14 md:py-12 py-10">
           {/* Content Side */}
@@ -138,7 +138,7 @@ export default function HeroSection() {
                 </div>
 
                 {/* Floating Service Badge */}
-                <div className="absolute top-6 left-6 bg-background/95 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg">
+                <div className="absolute top-6 left-6 bg-[#F5F4FA] backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg">
                   <p className="text-sm font-semibold text-accent">{currentSlideData.subtitle.split(" • ")[0]}</p>
                 </div>
               </div>
@@ -151,13 +151,13 @@ export default function HeroSection() {
             {/* Navigation Arrows */}
             <button
               onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-background/90 backdrop-blur-sm hover:bg-background border border-border rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl z-10"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#F5F4FA] backdrop-blur-sm hover:bg-background border border-border rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl z-10"
             >
               <ChevronLeft className="w-6 h-6 text-foreground" />
             </button>
             <button
               onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-background/90 backdrop-blur-sm hover:bg-background border border-border rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl z-10"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#F5F4FA] backdrop-blur-sm hover:bg-background border border-border rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl z-10"
             >
               <ChevronRight className="w-6 h-6 text-foreground" />
             </button>

@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #F5F7FA; /* Pure white for clean backgrounds */
+  --background: #d9d9da25; /* Pure white for clean backgrounds  former f5f7fa incase*/
   --foreground: oklch(0.278 0 0); /* Dark gray (#374151) for primary text */
   --card: oklch(0.976 0 0); /* Light gray (#f8fafc) for card backgrounds */
   --card-foreground: oklch(0.176 0 0); /* Darker gray (#1f2937) for card text */
@@ -13,7 +13,7 @@
   --primary: oklch(0.278 0 0); /* Dark gray (#374151) for primary buttons */
   --primary-foreground: oklch(1 0 0); /* White text on primary buttons */
   --secondary: oklch(0.588 0.142 264.376); /* Indigo (#6366f1) for secondary elements */
-  --secondary-foreground: oklch(1 0 0); /* White text on secondary buttons */
+  --secondary-foreground: oklch(43.092% 0.03286 18.43); /* White text on secondary buttons */
   --muted: oklch(0.976 0 0); /* Light gray for muted areas */
   --muted-foreground: oklch(0.176 0 0); /* Dark gray for muted text */
   --accent: #2862a3; /* Indigo accent color */

@@ -55,8 +55,18 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		keyframes: {
+        "rotate-squares": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
+      animation: {
+        "rotate-squares": "rotate-squares 2s linear infinite",
+      },
   	}
+
   },
   plugins: [require("tailwindcss-animate")],
 };

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Prof from "../assets/images/team-engineers-2.jpg"
 
-export function AboutUs() {
+export default function AboutUs() {
   return (
     <section className="py-30 lg:pb-40 md:pb-38 sm:pb-36 pb-34 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="flex flex-col lg:flex-row items-center gap-12">

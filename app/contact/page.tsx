@@ -6,14 +6,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Phone, Mail, MapPin, Clock, MessageSquare, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Footer from "@/components/footer"
-import Office from "../../assets/images/office-location-map.webp"
+import { Skeleton } from "@/components/ui/skeleton"
+import { useState } from "react"
 
 export const metadata: Metadata = {
   title: "Contact Us - Get Your Free IT Consultation | codex technology Solutions",
   description:
     "Contact Codex Technology Solutions for professional IT services. Get your free consultation for web development, business automation, network installation, and Starlink services.",
   keywords:
-    "contact IT company, free consultation, IT services quote, web development contact, business automation consultation",
+    "contact IT company, free consultation, codex contact, IT services quote, web development contact, business automation consultation",
   openGraph: {
     title: "Contact Codex Technology Solutions - Free IT Consultation",
     description:
@@ -219,11 +220,7 @@ export default function ContactPage() {
 
           <div className="max-w-4xl mx-auto">
             <div className="aspect-video rounded-lg overflow-hidden border border-border">
-              <img
-                src={Office.src}
-                alt="codex technology Solutions Office Location"
-                className="w-full h-full object-cover"
-              />
+              <iframe className="w-full h-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.1882083729893!2d7.470721273996372!3d9.046590188715435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b72d7fc40b1%3A0xe2b4bc84425d0204!2sTsukunda%20House!5e0!3m2!1sen!2sng!4v1758545886037!5m2!1sen!2sng" width="600" height="450"  allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div className="text-center mt-6">
               <Button
@@ -231,7 +228,7 @@ export default function ContactPage() {
                 variant="outline"
                 className="border-accent text-accent hover:bg-accent hover:text-accent-foreground bg-transparent"
               >
-                <Link href="https://maps.app.goo.gl/t9wkvwo23xueG2W26" target="_blank" rel="noopener noreferrer">
+                <Link href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.1882083729893!2d7.470721273996372!3d9.046590188715435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b72d7fc40b1%3A0xe2b4bc84425d0204!2sTsukunda%20House!5e0!3m2!1sen!2sng!4v1758545886037!5m2!1sen!2sng" target="_blank" rel="noopener noreferrer">
                   <MapPin className="mr-2 h-4 w-4" />
                   Get Directions
                 </Link>

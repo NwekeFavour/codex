@@ -60,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html className="loading" lang="en">
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href={Codex.src}/>
@@ -121,8 +121,8 @@ export default function RootLayout({
         />
       </head>
       <body className={`font-sans  ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Suspense fallback={null}>{children}</Suspense>
         <Preloader/>
+        <Suspense fallback={null}>{children}</Suspense>
         <SocialMediaToggle  />
         <Analytics />
       </body>
