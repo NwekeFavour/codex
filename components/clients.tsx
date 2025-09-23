@@ -1,8 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import Microsoft from "../assets/images/micosoft.webp"
 import Mitrotek from '../assets/images/MikroTik-Logo.webp'
 import Spdc from '../assets/images/spdc1_1.webp'
@@ -119,28 +117,6 @@ export function Testimonials() {
 
         {/* Slider Container */}
         <div className="relative max-w-8xl mx-auto">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10  backdrop-blur-sm hover:bg-muted transition-all duration-300 ease-out shadow-md rounded-full hover:scale-110 hover:shadow-lg hover:text-black opacity-80 hover:opacity-100"
-            onClick={prevSlide}
-            disabled={isTransitioning}
-            aria-label="Previous partners"
-          >
-            <ChevronLeft className="h-5 w-5 transition-transform duration-200 group-hover:-translate-x-0.5" />
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 backdrop-blur-sm hover:bg-muted transition-all duration-300 ease-out shadow-md rounded-full hover:scale-110 hover:shadow-lg opacity-80 hover:text-black hover:opacity-100"
-            onClick={nextSlide}
-            disabled={isTransitioning}
-            aria-label="Next partners"
-          >
-            <ChevronRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </Button>
-
           <div className="overflow-hidden">
             <div
               className="flex gap-4  sm:gap-0 lg:gap-0  transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
