@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description:
     "Codex Technologies helps businesses scale with IT consulting, cloud services, web development, ERP systems, Starlink installations, and enterprise networking.",
   keywords:
-    "Codex Technologies, IT solutions, IT consulting, software development, cloud services, web development, tech firm",
+    "Codex, Codex Tech, codex tech, Codex Technologies, IT solutions, IT consulting, software development, cloud services, web development, tech firm, codex firm",
   authors: [{ name: "Codex Technologies" }],
   creator: "Codex Technologies",
   publisher: "Codex Technologies",
@@ -86,7 +86,7 @@ export default function RootLayout({
                 streetAddress: "A05 Tsukunda House",
                 addressLocality: "CBD, Abuja",
                 addressRegion: "State",
-                postalCode: "12345",
+                postalCode: "900001",
                 addressCountry: "NIG",
               },
               sameAs: [
