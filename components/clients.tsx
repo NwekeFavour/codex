@@ -109,7 +109,7 @@ export function Testimonials() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">Our Trusted Partners</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">Clients and Partners</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             Building success together with industry-leading companies who trust our solutions
           </p>
