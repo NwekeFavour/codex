@@ -8,6 +8,7 @@ import "./globals.css"
 import Codex from "./codex.ico"
 import SocialMediaToggle from "@/components/socialsToggle"
 import { Preloader } from "@/components/preloader"
+import GoogleAnalytics from "@/components/googleAnalytics"
 
 export const metadata: Metadata = {
   title: "CODEX TECHNOLOGY SOLUTIONS | IT Solutions & Consulting",
@@ -119,11 +120,13 @@ export default function RootLayout({
             }),
           }}
         />
+        
       </head>
       <body className={`font-sans  ${GeistSans.variable} ${GeistMono.variable}`}>
         <Preloader/>
         <Suspense fallback={null}>{children}</Suspense>
         <SocialMediaToggle  />
+        <GoogleAnalytics/>
         <Analytics />
       </body>
     </html>

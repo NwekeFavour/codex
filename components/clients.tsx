@@ -10,6 +10,7 @@ import Starlink from '../assets/images/starlink.svg'
 import Babalankiandco from '../assets/images/bablanki.webp'
 import Arcades from '../assets/images/arcadesuites.webp'
 import GrowthStack from '../assets/images/growth-stack-logo.webp'
+import NUPRC from '../assets/images/nuprc.webp'
 import Layer from '../assets/images/layer.svg'
 
 const partners = [
@@ -48,6 +49,10 @@ const partners = [
   {
     name: "GrowthStack",
     logo: GrowthStack.src,
+  },
+  {
+    name: "NUPRC",
+    logo: NUPRC.src
   },
   {
     name: "ArcadeSuites",

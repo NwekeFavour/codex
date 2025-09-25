@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { MessageCircle, X, Mail } from "lucide-react";
+import { MessageCircle, X } from "lucide-react";
 import XIcon from '@mui/icons-material/X';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -22,7 +22,7 @@ export default function SocialMediaToggle() {
       >
         
         <a
-          href="https://facebook.com"
+          href="https://www.facebook.com/Codextechng"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 hover:text-blue-600 transition"
@@ -30,7 +30,7 @@ export default function SocialMediaToggle() {
           <FacebookIcon className="w-7 h-7"/> Facebook
         </a>
         <a
-          href="https://wa.me/+2348111022909"
+          href="https://wa.me/+2349094337227"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 hover:text-blue-600 transition"
@@ -38,7 +38,7 @@ export default function SocialMediaToggle() {
           <WhatsAppIcon className="w-7 h-7"/> WhatsApp
         </a>
         <a
-          href="https://twitter.com"
+          href="https://x.com/codextechng"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 hover:text-sky-500 transition"
@@ -46,7 +46,7 @@ export default function SocialMediaToggle() {
           <XIcon className="w-7 h-7" /> Twitter
         </a>
         <a
-          href="https://linkedin.com"
+          href="https://www.linkedin.com/company/codex_tech/"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 hover:text-blue-700 transition"

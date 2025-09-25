@@ -8,6 +8,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { Input } from "./ui/input"
 
 const services = [
   { name: "Web Development", href: "/services/web-development" },
@@ -46,7 +47,7 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-accent" />
                 <Link
-                  href="tel:+15551234567"
+                  href="tel:+2348111022909"
                   className="text-primary-foreground/80 hover:text-accent transition-colors"
                 >
                   +234 811 102 2909
@@ -109,12 +110,15 @@ export default function Footer() {
               <p className="text-sm text-primary-foreground/80 mb-4 text-pretty">
                 Get the latest IT insights and updates delivered to your inbox.
               </p>
-              <Button asChild size="sm" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                <Link href="/contact">
-                  Subscribe
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <form >
+                <div>
+                  <Input placeholder="Enter your email" className="mb-3 outline-none focus:border-none focus-visible:ring-0 focus-visible:outline-none focus-visible:ring-offset-0 focus-visible:ring-none placeholder:text-white border-none" type="email" required/>
+                </div>
+                <Button type="submit" size="sm" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                    Subscribe
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </form>
             </div>
           </div>
         </div>
@@ -132,28 +136,28 @@ export default function Footer() {
               <span className="text-primary-foreground/80 text-sm">Follow us:</span>
               <div className="flex space-x-3">
                 <Link
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/Codextechng"
                   className="text-primary-foreground/60 hover:text-accent transition-colors"
                   aria-label="Facebook"
                 >
                   <FacebookIcon className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="https://twitter.com"
+                  href="https://x.com/codextechng"
                   className="text-primary-foreground/60 hover:text-accent transition-colors"
                   aria-label="Twitter"
                 >
                   <XIcon className="w-5 h-5"  />
                 </Link>
                 <Link
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/company/codextechng/"
                   className="text-primary-foreground/60 hover:text-accent transition-colors"
                   aria-label="LinkedIn"
                 >
                   <LinkedInIcon className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="https://wa.me/+2348111022909"
+                  href="https://wa.me/+2349094337227"
                   className="text-primary-foreground/60 hover:text-accent transition-colors flex justify-center"
                   aria-label="Whatsapp"
                 >

@@ -83,7 +83,7 @@ export default function Header() {
           {/* Free Consultation Button */}
           <div className="hidden md:flex items-center space-x-4">
             <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              <Link href="/contact">
+              <Link href="/contact/#services">
                 <Phone className="mr-2 h-4 w-4" />
                 Free Consultation
               </Link>
@@ -161,7 +161,7 @@ export default function Header() {
               </Link>
               <div className="pt-2">
                 <Button asChild className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                  <Link href="/contact">
+                  <Link href="/contact/#services">
                     <Phone className="mr-2 h-4 w-4" />
                     Free Consultation
                   </Link>
