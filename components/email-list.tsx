@@ -40,7 +40,7 @@ export function EmailList({ searchQuery }: EmailListProps) {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/contacts")
+        const res = await fetch("https://codex2-1.onrender.com/api/contacts")
         const data = await res.json()
         setContacts(data)
       } catch (error) {
