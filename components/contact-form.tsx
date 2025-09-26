@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -16,9 +15,10 @@ export default function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
+
   const [formData, setFormData] = useState({
     fname: "",
-    lname: "",    
+    lname: "",
     email: "",
     phone: "",
     company: "",
@@ -27,35 +27,23 @@ export default function ContactForm() {
     message: "",
     consent: false,
     newsletter: false,
-  })  
+  })
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
     setErrorMessage("")
 
-    const target = e.target as HTMLFormElement;
-    const formData = {
-      fname: target.fname.value,
-      lname: target.lname.value,
-      email: target.email.value,
-      phone: target.phone.value,  
-      company: target.company.value,
-      service: target.service.value,
-      timeline: target.timeline.value,
-      message: target.message.value,
-      consent: target.consent.checked,
-      newsletter: target.newsletter.checked,
-    }
-
     try {
-      const response = await fetch("https://codex2-rttd.onrender.com", {
+      const response = await fetch("https://codex2-rttd.onrender.com/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData), // ✅ send state directly
       })
+
+      console.log("Submitted Data:", formData)
 
       if (!response.ok) {
         throw new Error("Network response was not ok")
@@ -63,6 +51,7 @@ export default function ContactForm() {
 
       setIsSubmitted(true)
     } catch (error) {
+      console.error(error)
       setErrorMessage("There was a problem submitting your message. Please try again later.")
     }
 
@@ -82,7 +71,22 @@ export default function ContactForm() {
             response.
           </p>
           <Button
-            onClick={() => { setIsSubmitted(false); setErrorMessage(""); }}
+            onClick={() => {
+              setIsSubmitted(false)
+              setErrorMessage("")
+              setFormData({
+                fname: "",
+                lname: "",
+                email: "",
+                phone: "",
+                company: "",
+                service: "",
+                timeline: "",
+                message: "",
+                consent: false,
+                newsletter: false,
+              }) // reset form
+            }}
             variant="outline"
             className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
           >
@@ -118,6 +122,8 @@ export default function ContactForm() {
               <Input
                 id="fname"
                 name="fname"
+                value={formData.fname}
+                onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
                 required
                 placeholder="John"
                 className="bg-input border-border text-foreground"
@@ -130,6 +136,8 @@ export default function ContactForm() {
               <Input
                 id="lname"
                 name="lname"
+                value={formData.lname}
+                onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
                 required
                 placeholder="Doe"
                 className="bg-input border-border text-foreground"
@@ -144,6 +152,8 @@ export default function ContactForm() {
             <Input
               id="email"
               name="email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               type="email"
               required
               placeholder="john@company.com"
@@ -158,6 +168,8 @@ export default function ContactForm() {
             <Input
               id="phone"
               name="phone"
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              value={formData.phone}
               type="tel"
               placeholder="+234 802 453 8970"
               className="bg-input border-border text-foreground"
@@ -171,6 +183,8 @@ export default function ContactForm() {
             <Input
               id="company"
               name="company"
+              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+              value={formData.company}
               placeholder="Your Company Inc."
               className="bg-input border-border text-foreground"
             />
@@ -181,7 +195,12 @@ export default function ContactForm() {
             <Label htmlFor="service" className="text-foreground">
               Service Interested In *
             </Label>
-            <Select name="service" required>
+            <Select
+              name="service"
+              value={formData.service}
+              onValueChange={(value) => setFormData({ ...formData, service: value })}
+              required
+            >
               <SelectTrigger className="bg-input border-border text-foreground">
                 <SelectValue placeholder="Select a service" />
               </SelectTrigger>
@@ -196,12 +215,16 @@ export default function ContactForm() {
             </Select>
           </div>
 
-          {/* Project Details */}
+          {/* Project Timeline */}
           <div className="space-y-2">
             <Label htmlFor="timeline" className="text-foreground">
               Project Timeline
             </Label>
-            <Select name="timeline">
+            <Select
+              name="timeline"
+              value={formData.timeline}
+              onValueChange={(value) => setFormData({ ...formData, timeline: value })}
+            >
               <SelectTrigger className="bg-input border-border text-foreground">
                 <SelectValue placeholder="When do you need this completed?" />
               </SelectTrigger>
@@ -222,6 +245,8 @@ export default function ContactForm() {
             <Textarea
               id="message"
               name="message"
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               required
               placeholder="Please describe your project requirements, current challenges, and what you hope to achieve..."
               rows={5}
@@ -231,15 +256,27 @@ export default function ContactForm() {
 
           {/* Consent */}
           <div className="flex items-start space-x-2">
-            <Checkbox id="consent" name="consent" required className="mt-1" />
+            <Checkbox
+              id="consent"
+              checked={formData.consent}
+              onCheckedChange={(checked) => setFormData({ ...formData, consent: Boolean(checked) })}
+              name="consent"
+              required
+              className="mt-1"
+            />
             <Label htmlFor="consent" className="text-sm text-muted-foreground text-pretty leading-relaxed">
-              I agree to receive communications from codex technology Solutions regarding my inquiry. I understand I can
+              I agree to receive communications from Codex Technology Solutions regarding my inquiry. I understand I can
               unsubscribe at any time. *
             </Label>
           </div>
 
           <div className="flex items-start space-x-2">
-            <Checkbox id="newsletter" name="newsletter" />
+            <Checkbox
+              id="newsletter"
+              checked={formData.newsletter}
+              onCheckedChange={(checked) => setFormData({ ...formData, newsletter: Boolean(checked) })}
+              name="newsletter"
+            />
             <Label htmlFor="newsletter" className="text-sm text-muted-foreground text-pretty leading-relaxed">
               I'd like to receive updates about new services and IT industry insights.
             </Label>

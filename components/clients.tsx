@@ -81,25 +81,6 @@ export function Testimonials() {
     return () => clearInterval(interval)
   }, [isAutoPlaying, itemsPerView, isTransitioning])
 
-  const nextSlide = () => {
-    if (isTransitioning) return
-    setIsAutoPlaying(false)
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + itemsPerView >= partners.length ? 0 : prevIndex + 1))
-      setIsTransitioning(false)
-    }, 50)
-  }
-
-  const prevSlide = () => {
-    if (isTransitioning) return
-    setIsAutoPlaying(false)
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setCurrentIndex((prevIndex) => (prevIndex === 0 ? Math.max(0, partners.length - itemsPerView) : prevIndex - 1))
-      setIsTransitioning(false)
-    }, 50)
-  }
 
   const visiblePartners = partners.slice(currentIndex, currentIndex + itemsPerView)
 

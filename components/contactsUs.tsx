@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Phone, Mail, MapPin, XCircle } from "lucide-react"
+import { Phone, Mail, MapPin, XCircle, CheckCircle } from "lucide-react"
 
 export default function QuickContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -14,33 +14,39 @@ export default function QuickContactSection() {
   const [errorMessage, setErrorMessage] = useState("")
   const [service, setService] = useState("")
 
+  const [formData, setFormData] = useState({
+    Yname: "",
+    email: "",
+    phone: "",
+    message: "",
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
     setErrorMessage("")
 
-    const target = e.target as HTMLFormElement
-    const formData = {
-      Yname: target.Yname.value,
-      email: target.email.value,
-      phone: target.phone.value,
-      service,
-      message: target.message.value,
-    }
-
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || "https://codex2-rttd.onrender.com"}/trigger-zap-two`,
+        `${process.env.NEXT_PUBLIC_API_URL || "https://codex2-rttd.onrender.com"}/api/quick-contact`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({ ...formData, service }),
         }
       )
 
       if (!response.ok) throw new Error("Network response was not ok")
 
       setIsSubmitted(true)
+
+      // ✅ reset form
+      setFormData({ Yname: "", email: "", phone: "", message: "" })
+      setService("")
     } catch (error) {
       setErrorMessage("There was a problem submitting your message. Please try again later.")
     } finally {
@@ -71,26 +77,31 @@ export default function QuickContactSection() {
                 </div>
               )}
 
-              {
-                isSubmitted ? 
-                <section className="">
-                  <div className="container mx-auto px-4">
-                    <div className="max-w-4xl mx-auto text-center">
-                      <div className="bg-green-100 border border-green-300 rounded-lg p-8">
-                        <h3 className="text-2xl font-bold text-green-800 mb-2">Thank You!</h3>
-                        <p className="text-green-700">
-                          We've received your message and will get back to you within 24 hours.
-                        </p>
-                      </div>
-                    </div>
+              {isSubmitted ? (
+                <div className="bg-green-100 border border-green-300 rounded-lg p-8 text-center">
+                  <div className="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-6 h-6 text-green-700" />
                   </div>
-                </section>
-                :
+                  <h3 className="text-2xl font-bold text-green-800 mb-2">Thank You!</h3>
+                  <p className="text-green-700">
+                    We've received your message and will get back to you within 24 hours.
+                  </p>
+                  <Button
+                    onClick={() => setIsSubmitted(false)}
+                    variant="outline"
+                    className="mt-6 border-green-600 text-green-700 hover:bg-green-600 hover:text-white"
+                  >
+                    Send Another Message
+                  </Button>
+                </div>
+              ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-4">
                     <Input
                       placeholder="Your Name"
                       name="Yname"
+                      value={formData.Yname}
+                      onChange={handleChange}
                       required
                       disabled={isSubmitting}
                       className="border-slate-300"
@@ -99,6 +110,8 @@ export default function QuickContactSection() {
                       type="email"
                       name="email"
                       placeholder="Email Address"
+                      value={formData.email}
+                      onChange={handleChange}
                       required
                       disabled={isSubmitting}
                       className="border-slate-300"
@@ -108,6 +121,8 @@ export default function QuickContactSection() {
                   <Input
                     name="phone"
                     placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={handleChange}
                     disabled={isSubmitting}
                     className="border-slate-300"
                   />
@@ -129,6 +144,8 @@ export default function QuickContactSection() {
                     name="message"
                     placeholder="Brief project description (optional)"
                     rows={3}
+                    value={formData.message}
+                    onChange={handleChange}
                     disabled={isSubmitting}
                     className="border-slate-300"
                   />
@@ -141,8 +158,7 @@ export default function QuickContactSection() {
                     {isSubmitting ? "Sending..." : "Get Free Quote"}
                   </Button>
                 </form>
-              }
-
+              )}
             </div>
 
             {/* Contact Info */}
