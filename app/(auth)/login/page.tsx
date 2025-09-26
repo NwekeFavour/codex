@@ -41,6 +41,11 @@ export default function LoginForm() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex justify-end items-center">
+            <Link href="/" className="text-sm text-accent hover:underline mb-4 mr-4">
+                Home
+            </Link>
+        </div>
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-sm bg-white p-6 rounded-2xl shadow-lg space-y-4"
