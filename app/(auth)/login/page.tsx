@@ -18,7 +18,7 @@ export default function LoginForm() {
 
     try {
       // 🔹 Replace with your API endpoint
-      const res = await fetch("https://codex2-rttd.onrender.com/api/auth/login", {
+      const res = await fetch("https://codex2-1.onrender.com/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

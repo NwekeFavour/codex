@@ -32,7 +32,7 @@ export default function QuickContactSection() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || "https://codex2-rttd.onrender.com"}/api/quick-contact`,
+        `${process.env.NEXT_PUBLIC_API_URL || "https://codex2-1.onrender.com"}/api/quick-contact`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

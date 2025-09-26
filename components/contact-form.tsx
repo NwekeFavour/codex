@@ -35,7 +35,7 @@ export default function ContactForm() {
     setErrorMessage("")
 
     try {
-      const response = await fetch("https://codex2-rttd.onrender.com/api/contact", {
+      const response = await fetch("https://codex2-1.onrender.com/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
