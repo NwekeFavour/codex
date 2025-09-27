@@ -4,7 +4,7 @@ import { useState } from "react"
 import { DashboardHeader } from "@/components/dashboard-header"
 import { EmailList } from "@/components/email-list"
 import ProtectedRoute from "@/components/protectedRoute"
-
+  
 export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState("")
 
