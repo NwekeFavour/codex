@@ -6,7 +6,6 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
 import Codex from "./codex.ico"
-import SocialMediaToggle from "@/components/socialsToggle"
 import { Preloader } from "@/components/preloader"
 import GoogleAnalytics from "@/components/googleAnalytics"
 
@@ -120,12 +119,11 @@ export default function RootLayout({
             }),
           }}
         />
-        
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
       </head>
       <body className={`font-sans  ${GeistSans.variable} ${GeistMono.variable}`}>
         <Preloader/>
         <Suspense fallback={null}>{children}</Suspense>
-        <SocialMediaToggle  />
         <GoogleAnalytics/>
         <Analytics />
       </body>

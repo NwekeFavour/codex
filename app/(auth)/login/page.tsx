@@ -1,14 +1,17 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { EyeClosed, EyeIcon } from "lucide-react"
+import { EyeClosed, EyeIcon, XCircle } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
+import ReCAPTCHA from "react-google-recaptcha"
 
 export default function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [message, setMessage] = useState("")
   const [error, setError] = useState<string | null>(null)
     const [hidden, setHidden] = useState(true);
   const handleSubmit = async (e: React.FormEvent) => {
@@ -16,9 +19,13 @@ export default function LoginForm() {
     setLoading(true)    
     setError(null)
 
+     if (!captchaToken) {
+      setMessage("Please complete the CAPTCHA")
+      return
+    }
     try {
       // 🔹 Replace with your API endpoint
-      const res = await fetch("https://codex2-1.onrender.com/api/auth/login", {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -30,7 +37,9 @@ export default function LoginForm() {
       }
 
       // ✅ Success – reload or redirect
+      setLoading(false)
       localStorage.setItem('token', (await res.json()).token);
+      console.log(res)
       window.location.href = "/dashboard"
     } catch (err: any) {
       setError(err.message)
@@ -42,6 +51,7 @@ export default function LoginForm() {
   return (
     <div>
         <div className="flex h-screen items-center justify-center  bg-gray-100">
+
         <form
             onSubmit={handleSubmit}
             className="w-full max-w-sm bg-white p-6 rounded-2xl shadow-lg space-y-5"
@@ -51,6 +61,12 @@ export default function LoginForm() {
                     Go Back
                 </Link>
             </div>
+           {message &&
+                (<p className="text-red-500">
+                    <XCircle className="inline mr-2 mb-1"/>
+                    {message}
+                </p>)
+            }
             <h2 className="text-2xl font-bold text-center text-gray-800">Login</h2>
 
             {error && (
@@ -71,38 +87,45 @@ export default function LoginForm() {
             </div>
 
             <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
-                        <div className="flex items-center gap-3 border rounded-lg mt-1 px-3  focus-within:ring-2 focus-within:ring-blue-500">
-                {
-                    hidden ? (
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className="mt-1 w-full px-4 py-2 border rounded-lg border-none focus:ring-0 focus:outline-none"
-                        />
-                    ) :
-                    (
-                        <input
-                            type="text"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className="mt-1 w-full px-4 py-2 border rounded-lg border-none focus:ring-0 focus:outline-none"
-                        />
-                    )
-                }
-                {
-                    hidden ? 
-                    <Link href={""} onClick={() => setHidden(!hidden)}  className="p-0 hover:text-black bg-transparent hover:bg-transparent">
-                        <EyeClosed/>
-                    </Link> : 
-                    <Link href={""} onClick={() => setHidden(!hidden)}  className="p-0 bg-transparent hover:bg-transparent hover:text-black">
-                        <EyeIcon/>
-                    </Link>
-                }
+                <label className="block text-sm font-medium text-gray-700">Password</label>
+                <div className="flex items-center gap-3 border rounded-lg mt-1 px-3  focus-within:ring-2 focus-within:ring-blue-500">
+                    {
+                        hidden ? (
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className="mt-1 w-full px-4 py-2 border rounded-lg border-none focus:ring-0 focus:outline-none"
+                            />
+                        ) :
+                        (
+                            <input
+                                type="text"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className="mt-1 w-full px-4 py-2 border rounded-lg border-none focus:ring-0 focus:outline-none"
+                            />
+                        )
+                    }
+                    {
+                        hidden ? 
+                        <Link href={""} onClick={() => setHidden(!hidden)}  className="p-0 hover:text-black bg-transparent hover:bg-transparent">
+                            <EyeClosed/>
+                        </Link> : 
+                        <Link href={""} onClick={() => setHidden(!hidden)}  className="p-0 bg-transparent hover:bg-transparent hover:text-black">
+                            <EyeIcon/>
+                        </Link>
+                    }
+                </div>
             </div>
+
+            <div>
+                <ReCAPTCHA
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                    onChange={(token) => setCaptchaToken(token)}
+                />
             </div>
 
             <Button

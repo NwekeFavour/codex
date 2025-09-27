@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Phone, Mail, MapPin, Clock, MessageSquare, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import SocialMediaToggle from "@/components/socialsToggle"
 import Footer from "@/components/footer"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useState } from "react"
@@ -257,6 +258,7 @@ export default function ContactPage() {
       </section>
 
       {/* Footer */}
+      <SocialMediaToggle  />
       <Footer />
     </main>
   )

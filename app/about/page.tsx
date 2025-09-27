@@ -3,6 +3,7 @@ import Header from "@/components/header"
 import { Computer, Globe, SatelliteIcon, Settings } from "lucide-react"
 import Link from "next/link"
 import About from "../../assets/images/team-engineers-2.jpg"
+import SocialMediaToggle from "@/components/socialsToggle"
 
 export default function AboutPage() {
   return (
@@ -271,6 +272,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <SocialMediaToggle  />
+      {/* Footer */}
       <Footer   />
     </div>
   )

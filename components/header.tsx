@@ -9,10 +9,15 @@ import Codex from "../assets/images/codex.webp"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+  let token = null;
+  if (typeof window !== 'undefined') {
+    token = localStorage.getItem('myKey');
+  }
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Services", href: "#services" },
+    token && {name: "Dashboard", href: "/dashboard"},
+    token && {name: "Logout", href: "/login", onClick: () => { localStorage.removeItem("token")} },
     { name: "Web Development", href: "/services/web-development" },
     { name: "Business Automation", href: "/services/business-automation" },
     { name: "Network Installation", href: "/services/network-installation" },

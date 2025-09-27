@@ -8,6 +8,7 @@ import QuickContactSection from "@/components/contactsUs"
 import EngagementBanner from "@/components/banner"
 import AboutUs  from "@/components/aboutUs"
 import { Testimonials } from "@/components/clients"
+import SocialMediaToggle from "@/components/socialsToggle"
 
 export default function HomePage() {
   return (
@@ -23,6 +24,8 @@ export default function HomePage() {
       <div className="bg-card xl:py-10 lg:py-8 py-7 xl:px-50 lg:px-42 md:px-5 sm:px-10 px-0">
         <QuickContactSection  />
       </div>
+      <SocialMediaToggle  />
+      {/* Footer */}
       <Footer />
     </main>
   )
