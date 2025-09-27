@@ -87,7 +87,7 @@ export function Preloader() {
             backgroundPosition: "center",
           }}
         />
-
+  
         {/* Fragments */}
         <div className="absolute top-0 left-0 w-full h-full">
           {fragments.map((f, index) => {
