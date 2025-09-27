@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react"
@@ -9,6 +11,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { Input } from "./ui/input"
+import { useEffect, useState } from "react"
+
 
 const services = [
   { name: "Web Development", href: "/services/web-development" },
@@ -27,6 +31,13 @@ const company = [
 
 export default function Footer() {
   const Year = new Date().getFullYear();
+    const [token, setToken] = useState<string | null>(null)
+  
+    useEffect(() => {
+      if (typeof window !== 'undefined') {
+        setToken(localStorage.getItem('token'));
+      }
+    }, [token])
   return (
     <footer className="bg-primary text-primary-foreground">
       {/* Main Footer Content */}
@@ -102,6 +113,36 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+
+          {token && (
+            <div className="hidden md:block">
+              <div>
+                <h3 className="font-semibold text-lg mb-6">Authentication</h3>
+                <ul className="space-y-3">
+                  <li>
+                    <Link
+                      href="/dashboard"
+                      className="text-primary-foreground/80 hover:text-accent transition-colors text-pretty"
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={"/login"}
+                      onClick={() => {
+                        localStorage.removeItem("token")
+                        setToken(null)
+                      }}
+                      className="text-primary-foreground/80 hover:text-red-500 transition-colors text-pretty"
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
 
           {/* Support & Newsletter */}
           <div>
