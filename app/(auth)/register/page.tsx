@@ -18,7 +18,7 @@ export default function RegisterForm() {
     setSuccess(null)
 // https://codex2-1.onrender.com
     try {
-      const res = await fetch("http://localhost:5000/api/auth/register", { // 🔹 change to your backend URL
+      const res = await fetch("https://codex2-1.onrender.com/api/auth/register", { // 🔹 change to your backend URL
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),

@@ -119,7 +119,6 @@ export default function RootLayout({
             }),
           }}
         />
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
       </head>
       <body className={`font-sans  ${GeistSans.variable} ${GeistMono.variable}`}>
         <Preloader/>
