@@ -15,7 +15,8 @@ export default function QuickContactSection() {
   const [service, setService] = useState("")
 
   const [formData, setFormData] = useState({
-    Yname: "",
+    fname: "",
+    lname: "",
     email: "",
     phone: "",
     message: "",
@@ -45,7 +46,7 @@ export default function QuickContactSection() {
       setIsSubmitted(true)
 
       // ✅ reset form
-      setFormData({ Yname: "", email: "", phone: "", message: "" })
+      setFormData({ fname: "", lname: "", email: "", phone: "", message: "" })
       setService("")
     } catch (error) {
       setErrorMessage("There was a problem submitting your message. Please try again later.")
@@ -98,26 +99,35 @@ export default function QuickContactSection() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-4">
                     <Input
-                      placeholder="Your Name"
-                      name="Yname"
-                      value={formData.Yname}
-                      onChange={handleChange}
+                      id="fname"
+                      name="fname"
+                      value={formData.fname}
+                      onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
                       required
-                      disabled={isSubmitting}
-                      className="border-slate-300"
+                      placeholder="Mark"
+                      className="bg-input border-border text-foreground"
                     />
                     <Input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      value={formData.email}
-                      onChange={handleChange}
+                      id="lname"
+                      name="lname"
+                      value={formData.lname}
+                      onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
                       required
-                      disabled={isSubmitting}
-                      className="border-slate-300"
+                      placeholder="Zuckerburg"
+                      className="bg-input border-border text-foreground"
                     />
                   </div>
 
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    disabled={isSubmitting}
+                    className="border-slate-300"
+                    />
                   <Input
                     name="phone"
                     placeholder="Phone Number"

@@ -14,19 +14,8 @@ export default function Header() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setToken(localStorage.getItem('token'));
-    }
+    } 
   }, [token])
-
-  const navigation = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "#services" },
-
-    { name: "Web Development", href: "/services/web-development" },
-    { name: "Business Automation", href: "/services/business-automation" },
-    { name: "Network Installation", href: "/services/network-installation" },
-    { name: "Starlink Installation", href: "/services/starlink-installation" },
-    { name: "Contact", href: "/contact" },
-  ]
 
   const [showServicesDropdown, setShowServicesDropdown] = useState(false);
   return (
