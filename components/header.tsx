@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { X, Phone, MenuIcon } from "lucide-react"
@@ -9,13 +9,6 @@ import Codex from "../assets/images/codex.webp"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [token, setToken] = useState<string | null>(null)
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setToken(localStorage.getItem('token'));
-    } 
-  }, [token])
 
   const [showServicesDropdown, setShowServicesDropdown] = useState(false);
   return (
@@ -75,17 +68,6 @@ export default function Header() {
             <Link href="/contact" className="text-foreground hover:text-accent transition-colors">
               Contact
             </Link>
-            {
-              token &&
-              <div className="md:hidden block">
-                <Link href="/dashboard" className="text-foreground hover:text-accent transition-colors">
-                  Dashboard
-                </Link>
-                <Link href={"/login"} onClick={() => localStorage.removeItem("token")} className="text-foreground hover:text-accent transition-colors">
-                  Logout
-                </Link>
-              </div>
-            }
           </nav>
 
           {/* Free Consultation Button */}
@@ -167,25 +149,6 @@ export default function Header() {
               >
                 Contact
               </Link>
-              {token && (
-                <div className="md:hidden block">
-                  <Link
-                    href="/dashboard"
-                    className="block px-3 py-2 text-card-foreground hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"                  >
-                    Dashboard
-                  </Link>
-                  <Link
-                    href={"/login"}
-                    onClick={() => {
-                      localStorage.removeItem("token")
-                      setToken(null)
-                    }}
-                    className="block px-3 py-2 text-card-foreground hover:text-accent-foreground hover:bg-red-500 rounded-md transition-colors"                  
-                    >
-                    Logout
-                  </Link>
-                </div>
-              )}
               <div className="pt-2">
                 <Button asChild className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
                   <Link href="/contact/#services">
