@@ -80,7 +80,7 @@ const benefits = [
 ]
 
 export default function BusinessAutomationPage() {
-  return (
+  return (    
     <main className="min-h-screen">
       <Header />
 
