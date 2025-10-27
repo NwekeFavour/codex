@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Mail, MoreVertical, Download } from "lucide-react"
+import { Mail, MoreVertical, Download, Trash2, Loader2 } from "lucide-react"
 
 type Contact = {
   _id: string
@@ -34,7 +34,15 @@ export function EmailList({ searchQuery }: EmailListProps) {
   const [contacts, setContacts] = useState<Contact[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null)
+  const [message, setMessage] = useState("")
+  const [deleting, setDeleting] = useState(false);
 
+  useEffect(() => {
+  if (message) {
+    const timer = setTimeout(() => setMessage(""), 3000);
+    return () => clearTimeout(timer);
+  }
+}, [message]);
   useEffect(() => {
     const fetchContacts = async () => {
       try {
@@ -50,8 +58,8 @@ export function EmailList({ searchQuery }: EmailListProps) {
     fetchContacts()
   }, [])
 
-  if (loading) return <p className="p-4">Loading contacts...</p>
-
+  if (loading) return <p className="p-4 text-center flex justify-center items-center w-full"><Loader2/></p>
+  
   const filteredContacts = contacts.filter((c) =>
     `${c.fname} ${c.lname} ${c.phone} ${c.email} ${c.message}`
       .toLowerCase()
@@ -74,6 +82,32 @@ export function EmailList({ searchQuery }: EmailListProps) {
     saveAs(blob, "contacts.csv")
   }
 
+  const handleDelete = async (id: string) => {
+    setDeleting(true);
+    setMessage("");
+
+    try {
+      const response = await fetch(`https://codex2-1.onrender.com/api/contacts/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setContacts((prev) => prev.filter((contact) => contact._id !== id));
+        setSelectedContact(null);
+        setMessage("✅ Contact deleted successfully!");
+      } else {
+        const err = await response.json();
+        setMessage(err.message || "❌ Failed to delete contact.");
+      }
+    } catch (error) {
+      console.error("Error deleting contact:", error);
+      setMessage("⚠️ An error occurred while deleting contact.");
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+
   return (
     <>
       {/* Export Button */}
@@ -82,7 +116,7 @@ export function EmailList({ searchQuery }: EmailListProps) {
           <Download className="h-4 w-4 mr-2" /> Export Contacts
         </Button>
       </div>
-
+      <p className="m-0 text-red-400">{message}</p>
       <Card className="bg-card border-border">
         <CardHeader>
           <CardTitle className="text-foreground">Recent Email Signups</CardTitle>
@@ -124,6 +158,7 @@ export function EmailList({ searchQuery }: EmailListProps) {
                     <Button
                       variant="ghost"
                       size="sm"
+                      className="px-2 hover:bg-transparent text-gray-500 hover:text-neutral-600 transition-colors"
                       onClick={() => setSelectedContact(visitor)}
                     >
                       <MoreVertical className="h-4 w-4" />
@@ -138,7 +173,7 @@ export function EmailList({ searchQuery }: EmailListProps) {
 
       {/* Contact Details Dialog */}
       <Dialog open={!!selectedContact} onOpenChange={() => setSelectedContact(null)}>
-        <DialogContent className="bg-white">
+        <DialogContent className="bg-white sm:w-full! rounded-md w-[350px]!">
           <DialogHeader>
             <DialogTitle>
               {selectedContact?.fname} {selectedContact?.lname}
@@ -168,6 +203,25 @@ export function EmailList({ searchQuery }: EmailListProps) {
                 <strong>Request Date:</strong>{" "}
                 {new Date(selectedContact.createdAt).toLocaleString()}
               </p>
+
+              <Button
+                variant="destructive"
+                className="mt-4 px-3 py-1 flex items-center justify-center"
+                disabled={deleting}
+                onClick={() => handleDelete(selectedContact._id)}
+              >
+                {deleting ? (
+                  <>
+                    <Loader2 className="animate-spin h-4 w-4 text-neutral-50 mr-2" />
+                    Deleting...
+                  </>
+                ) : (
+                  <>
+                    <Trash2 className="h-4 w-4 text-neutral-50 mr-2" />
+                    Delete Contact
+                  </>
+                )}
+              </Button>
             </div>
           )}
         </DialogContent>
